@@ -15,9 +15,9 @@ Table des matières :
 
 ### Configure your own Maven installation with Eclipse
 
-![Maven Eclipse integration](images/maven1.png)
-![Maven Eclipse integration](images/maven2.png)
+![Maven Eclipse integration](images/eclipse-own-maven.png)
+![Maven Eclipse integration](images/eclipse-maven-options.png)
 
 [[folder]] `mouseR on project > Maven > Update project`
 
-![Maven Eclipse integration](images/maven3.png)
+![Maven Eclipse integration](images/eclipse-maven-update-project.png)

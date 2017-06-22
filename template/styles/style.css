@@ -4,6 +4,10 @@ html {
     font-size: .9em;
 }
 
+em {
+    opacity: .5;
+}
+
 #home {
     margin: 2rem;
 }
@@ -25,9 +29,10 @@ img {
 }
 
 code {
-    background-color: wheat;
+    background-color: #f1e8f4;
     border-radius: .2em;
     padding: 0 .2em;
+    font-size: 1.2em;
 }
 
 blockquote {

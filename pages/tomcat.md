@@ -3,7 +3,7 @@
 
 ## Configuration
 
-Configurer le fichier conf/tomcat-users.xml comme suit :
+Configurer le fichier _conf/tomcat-users.xml_ comme suit :
 ```bash
 <role rolename="tomcat"/>
 <role rolename="manager-gui"/>
@@ -35,7 +35,7 @@ Permettre de lire le fichier de sortie quand on a lancé Tomcat en mode service 
 $ tail -f catalina.out
 ```
 ## Déploiement
-Déposer l'application .war dans le dossier webapp de Tomcat
+Déposer l'application `*.war` dans le dossier `webapp` de Tomcat
 
 ou faire un deploy.bat
  ```bash

@@ -6,3 +6,6 @@
 - [Tomcat](tomcat)
 - [Servlets](servlets) - *config, best practices, tomcat*
 - [Windows](windows)
+- [Spring](spring)
+- [Mysql](mysql) - *CLI, SQL commands*
+- [Git & GitHub](git) - *CLI, use cases, security...*

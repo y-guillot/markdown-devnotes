@@ -45,3 +45,11 @@ ou faire un deploy.bat
  mvn clean package && xcopy /Y /Q source\*.war dest
  @echo on
  ```
+
+## Eclipse deploiement et configuration
+ D:\workspaces\learning\.metadata\.plugins\org.eclipse.wst.server.core
+ En cas de problème supprimer les dossiers `tmp0`, `work` et le contenu du dossier `temp` seulement.
+
+
+
+ ## configurer Tomcat pour UTF8

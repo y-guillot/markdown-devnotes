@@ -8,6 +8,23 @@ em {
     opacity: .5;
 }
 
+a:link {
+    text-decoration: none;
+    color: #0366d6;
+}
+
+a:visited {
+    color: #679bd3;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+a:active {
+    color: #b1c7dd;
+}
+
 #home {
     margin: 2rem;
 }
@@ -21,6 +38,9 @@ h2 {
 h3 {
     color:#f4b169;
 }
+h4 {
+    color:#a9c493;
+}
 
 img {
     max-width: 100%;
@@ -29,9 +49,9 @@ img {
 }
 
 code {
-    background-color: #f1e8f4;
-    border-radius: .2em;
-    padding: 0 .2em;
+    background-color: #f3f78c; //#ffefef;
+    border-radius: .3em;
+    padding: .05em .3em;
     font-size: 1.2em;
 }
 

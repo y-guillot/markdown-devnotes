@@ -1,7 +1,15 @@
 
 html {
     font-family: 'Open Sans', sans-serif;
+    font-size: 100%;
+}
+
+body {
     font-size: .9em;
+}
+
+ol, ul {
+    padding-left: 1.5rem;
 }
 
 em {
@@ -89,12 +97,17 @@ blockquote:after {
 
 pre.hljs {
     padding: 0.5em;
-    /*border-radius: 3px;*/
+    border-radius: 3px;
     border: 1px solid #eee;
+    background-color: #f0f0ff;
 }
 
 pre.hljs code {
     background: none;
     border-radius: none;
     padding: 0;
+}
+
+pre.hljs.debug {
+    background-color: white;
 }

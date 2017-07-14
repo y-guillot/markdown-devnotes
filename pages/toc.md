@@ -9,3 +9,4 @@
 - [Spring](spring)
 - [Mysql](mysql) - *CLI, SQL commands*
 - [Git & GitHub](git) - *CLI, use cases, security...*
+- [AngularJS](angularjs)

@@ -11,14 +11,16 @@ var md = require('markdown-it')({
     html: true,         // Enable HTML tags in source
     xhtmlOut: true,     // Use '/' to close single tags (<br />).
     highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return '<pre class="hljs"><code>' +
-                hljs.highlight(lang, str, true).value +
-                '</code></pre>';
-            } catch (__) { }
+        if (!lang) return '';
+        if (lang == 'debug') {
+            return hljsRender(str, 'shell', 'hljs debug');
         }
-        return ''; // use external default escaping
+        else if (hljs.getLanguage(lang)) {
+            try {
+                return hljsRender(str, lang);
+            } catch (__) { return ''; }
+        }
+       //return ''; // use external default escaping
     }
 });
 
@@ -28,7 +30,8 @@ var PAGE_404 = md.render('# 404'),
     TEMPLATE_DIR = 'template/',
     STYLE_DIR = TEMPLATE_DIR + 'styles/',
     IMG_DIR = 'images/',
-    DEFAULT_TPL = 'default.html';
+    DEFAULT_TPL = 'default.html',
+    HLJS_CSS = 'hljs';
 
 var FOLDER_ICO = '&#x1F4C2',
     BACK_ARROW_ICO = '';
@@ -40,11 +43,21 @@ var FOLDER_ICO = '&#x1F4C2',
     return fs.readFileSync(TEMPLATE_DIR + tpl, 'utf8');
 }
 
+/**
+ * HighlightJS render.
+ */
+function hljsRender(str, lang, css = HLJS_CSS) {
+    return '<pre class="' + css + '"><code>' +
+        hljs.highlight(lang, str, true).value +
+        '</code></pre>';
+}
+
 
 /**
  * Template rendering.
  * TODO implement emoji replace function
  */
+
  function template(page, req, res, tpl = DEFAULT_TPL) {
 
     if (page == undefined) {
@@ -71,6 +84,7 @@ var FOLDER_ICO = '&#x1F4C2',
  * Send file based on Route parameters.
  * Use cases : stylesheets, images ...
  */
+
  function sendFile(dir, req, res) {
 
     var options = {

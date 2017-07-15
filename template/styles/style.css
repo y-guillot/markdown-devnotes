@@ -56,11 +56,20 @@ img {
     border: 1px solid #eee;
 }
 
+pre {
+    white-space:pre-wrap;
+}
+
 code {
-    background-color: #f3f78c; //#ffefef;
+    background-color: #fff4ac;
     border-radius: .3em;
     padding: .05em .3em;
     font-size: 1.2em;
+    border-radius: 3px;
+}
+
+code span.tree {
+    color: #ddd;
 }
 
 blockquote {
@@ -109,5 +118,17 @@ pre.hljs code {
 }
 
 pre.hljs.debug {
+    background-color: #fff8f0;
+    padding-left: 1rem;
+    //position: relative;
+}
+
+pre.hljs.tree {
     background-color: white;
+}
+
+span.dollar {
+    color: #eda293;
+    position: relative;
+    left: -.5rem;
 }

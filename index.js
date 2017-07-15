@@ -11,27 +11,30 @@ var md = require('markdown-it')({
     html: true,         // Enable HTML tags in source
     xhtmlOut: true,     // Use '/' to close single tags (<br />).
     highlight: function (str, lang) {
-        if (!lang) return '';
-        if (lang == 'debug') {
-            return hljsRender(str, 'shell', 'hljs debug');
+        switch(lang){
+            case DEBUG_CSS:
+               return debugRender(hljsRender(str, 'shell', 'hljs ' + DEBUG_CSS));
+            case TREE_CSS :
+                return treeRender(hljsRender(str, 'shell', 'hljs ' + TREE_CSS));
+            default :
+                return codeRender(str, lang);
         }
-        else if (hljs.getLanguage(lang)) {
-            try {
-                return hljsRender(str, lang);
-            } catch (__) { return ''; }
-        }
-       //return ''; // use external default escaping
     }
 });
 
-/* Constants */
+/**
+ * Constants
+ */
 var PAGE_404 = md.render('# 404'),
     PAGE_DIR = 'pages/',
     TEMPLATE_DIR = 'template/',
     STYLE_DIR = TEMPLATE_DIR + 'styles/',
     IMG_DIR = 'images/',
-    DEFAULT_TPL = 'default.html',
-    HLJS_CSS = 'hljs';
+    DEFAULT_TPL = 'default.html';
+
+var HLJS_CSS = 'hljs',
+    DEBUG_CSS = 'debug',
+    TREE_CSS = 'tree';
 
 var FOLDER_ICO = '&#x1F4C2',
     BACK_ARROW_ICO = '';
@@ -44,7 +47,7 @@ var FOLDER_ICO = '&#x1F4C2',
 }
 
 /**
- * HighlightJS render.
+ * HighlightJS core render .
  */
 function hljsRender(str, lang, css = HLJS_CSS) {
     return '<pre class="' + css + '"><code>' +
@@ -52,12 +55,54 @@ function hljsRender(str, lang, css = HLJS_CSS) {
         '</code></pre>';
 }
 
+/**
+ * Default HighlightJS code render.
+ */
+function codeRender(str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+       try {
+            return hljsRender(str, lang);
+        } catch (__) {}
+    }
+    return '';
+}
+
+/**
+ * HighlightJS debug render.
+ */
+function debugRender(str) {
+    //var spanIn = "<span class='hljs-meta'>",
+    var dollar = "<span class='dollar'>$</span>";
+    str = str.replace(/<code>(\w+)/, "<code>" + dollar + "$1");
+    str = str.replace(/\n(\w+)/g, "\n" + dollar + "$1");
+    return str;
+}
+
+/**
+ * HighlightJS Tree render.
+ */
+function treeRender(str) {
+    var spanIn = "<span class='" + TREE_CSS +  "'>",
+        spanOut = "</span>";
+
+    // TODO  Deal with deeper tree structure.
+
+    str = str.replace(/\t{3}([\w]+)/g,
+        spanIn + "&nbsp;&#9474;&nbsp;&nbsp;&#9474;&nbsp;&nbsp;&#9500;&#9472;" + spanOut + "$1");
+    str = str.replace(/\t{2}([\w]+)/g,
+        spanIn + "&nbsp;&#9474;&nbsp;&nbsp;&#9500;&#9472;" + spanOut + "$1");
+    str = str.replace(/\t{1}([\w]+)/g,
+        spanIn + "&nbsp;&#9500;&#9472;" + spanOut + "$1");
+
+    // TODO replace some tree chars for a better rendering. 
+
+    return str;
+}
 
 /**
  * Template rendering.
  * TODO implement emoji replace function
  */
-
  function template(page, req, res, tpl = DEFAULT_TPL) {
 
     if (page == undefined) {

@@ -10,3 +10,10 @@ Fast and simple dev-note tool based one express.js and markdown
 1. update `toc.md` to link your new page.
 1. that's all folks
 
+## Code rendering
+
+- HighlightJS comes with multi-language code highlighting.
+- Specific pseudo-language code render has beeen added such as :
+	- _tree_ : better display of tree structure - (use tabs).
+	- _debug_ : automatically add "$" sign for each new line with special css render. 
+
